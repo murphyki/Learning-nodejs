@@ -1,7 +1,7 @@
 console.info("Hello from properties.js");
 
 var obj = {
-	name: "Blah"
+    name: "Blah"
 };
 
 console.info("hasOwnProperty: ", obj.hasOwnProperty("name"));
@@ -14,3 +14,4 @@ console.info("descriptor.enumerable: ", descriptor.enumerable);
 console.info("descriptor.configurable: ", descriptor.configurable);
 console.info("descriptor.writable: ", descriptor.writable);
 console.info("descriptor.value: ", descriptor.value);
+
