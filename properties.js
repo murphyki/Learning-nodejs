@@ -4,10 +4,11 @@ var obj = {
     name: "Blah"
 };
 
-console.info("hasOwnProperty: ", obj.hasOwnProperty("name"));
-console.info("propertyIsEnumerable: ", obj.propertyIsEnumerable("name"));
-console.info("Object.isExtensible: ", Object.isExtensible(obj));
-console.info("Object.isSealed: ", Object.isSealed(obj));
+console.info("obj.hasOwnProperty('name'): ", obj.hasOwnProperty("name"));
+console.info("obj.hasOwnProperty('toString'): ", obj.hasOwnProperty("toString"));
+console.info("obj.propertyIsEnumerable('name'): ", obj.propertyIsEnumerable("name"));
+console.info("Object.isExtensible(obj): ", Object.isExtensible(obj));
+console.info("Object.isSealed(obj): ", Object.isSealed(obj));
 
 var descriptor = Object.getOwnPropertyDescriptor(obj, "name");
 console.info("descriptor.enumerable: ", descriptor.enumerable);
