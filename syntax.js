@@ -1,7 +1,38 @@
 console.info("Hello from syntax.js");
 
-var i = 0
+// TYPES - Javascript has 5 basic/primitive types:
+//    undefined, null, boolean, number and string
+// There is also object and function
+console.info("typeof true = " + (typeof true));
+console.info("typeof 'hello' = " + (typeof "hello"));
+console.info("typeof 1.5 = " + (typeof 1.5));
+console.info("typeof undefined = " + (typeof undefined));
+console.info("typeof null = " + (typeof null)); // this will be 'object' as null is an empty object reference
 
+// VARIABLES
+var val; // value set to 'undefined' by default
+console.info("The variable val=" + val);
+console.info("The variable val is undefined: " + (val == undefined));
+console.info("The variable val's type is: " + (typeof val));
+
+val = "Val is set!"
+console.info("The variable val=" + val);
+console.info("The variable val is undefined: " + (val == undefined));
+console.info("The variable val's type is: " + (typeof val));
+
+// NOTE: Variables declared with the 'var' keyword are local to the scope
+// in which it was declared. Leaving off the 'var' keyword will create
+// global variables, which may/maynot be the intention.
+// e.g.
+if (true) {
+    g_global = "I am a global, available everywhere!!";
+} 
+console.info("The variable g_global=" + g_global);
+console.info("The variable g_global is undefined: " + (g_global == undefined));
+console.info("The variable g_global's type is: " + (typeof g_global));
+
+// LOOPING
+var i = 0
 var nums = new Array(1,2,3);
 for (num in nums) {
     console.info(nums[num]);
