@@ -1,4 +1,4 @@
-console.info("Hello from properties.js");
+console.info("Hello from object.js");
 
 // Defining Properties
 // 'Own' properties as distinct from prototype properties
@@ -70,8 +70,45 @@ for (var property in myObj1) {
 // Object.keys will only enumerate uwn properties
 
 // Types of Properties
+// Two different tyoes of properties:
+//   Data properties     - contain a value, e.g. name, age
+//   Accessor properties - dont contain a value but define a function when
+//                         a property is read (getter) and a property is 
+//                         written to (setter)
+// 
+// The default behaviour of the [[Put]] method is to create a data property
+// Every example up to this point has used data properties
+// Accessor property syntax:
+var myObj4 = {
+    _name: "myObj4", // accessor property
+    
+    set name(value) { // setter method
+        console.info("Setting _name to %s", value);
+        this._name = value;
+    },
+    
+    get name() { // getter method
+        console.info("Reading _name");
+        return this._name;
+    }
+};
+console.info("myObj4.name=", myObj4.name);
+myObj4.name = "John";
+console.info("myObj4.name=", myObj4.name);
+
+// NOTE on accessor property syntax:
+// You can define both a getter and a setter or one or the other.
+// If a setter only defined then the property is write only. Any
+// attempt to read it will result in an error.
+// If a getter only defined then the property is read only. Any
+// attempt to write to it will result in an error.
+// The failures will be silent unless strict mode is on ("use strict";);
 
 // Property Attributes
+//   Common attributes: [[Enumerable]] and [[Configurable]]
+//     [[Enumerable]] - determines whether he property can be iterated over
+//     [[Configurable]] - determines whether the property can be changed
+
 
 // Preventing Object Modification
 
@@ -91,18 +128,4 @@ console.info("descriptor.configurable: ", descriptor.configurable);
 console.info("descriptor.writable: ", descriptor.writable);
 console.info("descriptor.value: ", descriptor.value);
 
-var obj2 = {
-    _name: "obj2",
-    
-    set name(value) {
-        console.info("Setting _name to %s", value);
-        this._name = value;
-    },
-    
-    get name() {
-        console.info("Reading _name");
-        return this._name;
-    }
-};
-obj2.name;
-obj2.name = "John";
+
