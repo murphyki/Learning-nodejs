@@ -42,6 +42,8 @@ var arr1 = new Array();
 arr1.push(1);
 arr1.push(2);
 arr1.push(3);
+console.info("typeof arr1=" + (typeof arr1));// outputs 'object'!
+console.info("arr1 is an array=" + Array.isArray(arr1)); // outputs 'true'
 console.info("Length of arr1=" + arr1.length);
 console.info("arr1 contents=" + arr1.toString());
 
@@ -180,13 +182,39 @@ switch(number) {
 // LOOPING
 // Different types of loops:
 // for, for/in, while, do/while
-var i = 0
-var nums = new Array(1,2,3);
-for (num in nums) {
-    console.info(nums[num]);
+console.info("for loop: traditional");
+for (var i = 0; i < 3; i++) {
+    console.info(i);
 }
 
+console.info("Looping over an array");
 var letters = new Array('a', 'b', 'c');
 for (var i = 0; i < letters.length; i++) {
-    console.info(letters[i]);
+    // do something...
 }
+
+console.info("for loop: for/in");
+var props = {
+    prop1: "prop1",
+    prop2: "prop2",
+    prop3: "prop3",
+    prop4: "prop4"    
+};
+for (prop in props) {
+    console.info(props[prop]);
+}
+
+console.info("while loop");
+var i = 0;
+while (i < 3) {
+    console.info(i);
+    i++; // dont forget to increment!!! or else infinite loop
+}
+
+console.info("do/while loop");
+var i = false;
+do {
+    // do/while runs at least once
+    console.info(i);
+} while (i); // continue if true otherwise end
+
