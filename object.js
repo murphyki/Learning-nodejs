@@ -2,7 +2,7 @@ console.info("Hello from object.js");
 
 // Defining Properties
 // 'Own' properties as distinct from prototype properties
-// own property = instance property
+// 'Own' property = instance property
 // 'Own' properties we add, prototype properties are inherited
 // from parent classes
 // [[Put]] method creates the own property
@@ -105,9 +105,57 @@ console.info("myObj4.name=", myObj4.name);
 // The failures will be silent unless strict mode is on ("use strict";);
 
 // Property Attributes
-//   Common attributes: [[Enumerable]] and [[Configurable]]
-//     [[Enumerable]] - determines whether he property can be iterated over
-//     [[Configurable]] - determines whether the property can be changed
+// Common attributes: [[Enumerable]] and [[Configurable]]
+//   [[Enumerable]] - boolean, determines whether the property can be iterated over
+//   [[Configurable]] - boolean, determines whether the property can be changed
+// By default all properties you declare on an object are both enumerable
+// and configurable.
+// Possible to change property attributes using Object.defineProperty()
+var myObj5 = {
+    name: "myObj5"
+};
+
+// Add a new property
+Object.defineProperty(myObj5, "age", {
+    enumerable: false
+});
+console.info("myObj5.hasOwnProperty('name'): ", myObj5.hasOwnProperty("name")); // true
+console.info("myObj5.hasOwnProperty('age'): ", myObj5.hasOwnProperty("age"));   // true
+console.info("myObj5.propertyIsEnumerable('name'): ", myObj5.propertyIsEnumerable("name")); // true
+console.info("myObj5.propertyIsEnumerable('age'): ", myObj5.propertyIsEnumerable("age"));   // false
+
+var properties = Object.keys(myObj5);
+console.info("Object.keys(myObj5) length=" + properties.length); // outputs 1
+
+// modify an exiting property
+Object.defineProperty(myObj5, "name", {
+    configurable: false    
+});
+
+// Try and delete the name property now...
+console.info("before delete: myObj5.name exists=", ("name" in myObj5));
+delete myObj5.name; // fails silently if strict mode not on
+console.info("after delete: myObj5.name exists=", ("name" in myObj5));
+
+// Try and set the configurable attribute back to true...
+// Error! can't make a non-configurable proerty configurable!
+//Object.defineProperty(myObj5, "name", {
+//    configurable: true    
+//});
+
+// Data Property Attributes
+// Data properties possess two additional attributes:
+//   [[Value]]    - holds the property value 
+//   [[Writable]] - boolean, indicates whether the property can be written to
+// By default, all properties are writable.
+var myObj6 = {};
+Object.defineProperty(myObj6, "name", {
+    value: "myObj6",
+    enumerable: true,
+    configurable: true,
+    writable: true    
+});
+
 
 
 // Preventing Object Modification
