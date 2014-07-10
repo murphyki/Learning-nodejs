@@ -249,10 +249,40 @@ console.info("Object.isExtensible(myObj10): ", Object.isExtensible(myObj10)); //
 myObj10.saySomething = function() {
     console.info("hello");
 };
-console.info("Is saySomething in myObj10? ", ("saySomething" in myObj10));// false
+console.info("Is saySomething in myObj10? ", ("saySomething" in myObj10));    // false
 
-//console.info("Object.isSealed(obj1): ", Object.isSealed(obj1));
+// Sealing Objects
+// Another way to create a non-extensible object is to seal the object.
+// A sealed object is non-extensible and all of its properties are
+// non-configurable. This means you cannot add new properties to the object
+// but you cannot also remove proeperties or chnage their type (from data
+// to accessor or vice versa). If an object is sealed, you can only read from
+// and write to its properties.
+var myObj11 = {
+    name: "myObj11"
+};
+console.info("Object.isExtensible(myObj11): ", Object.isExtensible(myObj11)); // true
+console.info("Object.isSealed(myObj11): ", Object.isSealed(myObj11));         // false
+Object.seal(myObj11);
+console.info("Object.isExtensible(myObj11): ", Object.isExtensible(myObj11)); // false
+console.info("Object.isSealed(myObj11): ", Object.isSealed(myObj11));         // true
 
+// Freezing Objects
+// The third way to make a non-extensible object is to freeze the object.
+// If an object is frozen, you cannot add/remove properties, you cant change
+// properties' types and you cant write to any data properties.
+// In essense a frozen object is a sealed object where data properties are
+//also read-only. Frozen objects cannot become unfrozen.
+var myObj12 = {
+    name: "myObj12"
+};
+console.info("Object.isExtensible(myObj12): ", Object.isExtensible(myObj12)); // true
+console.info("Object.isSealed(myObj12): ", Object.isSealed(myObj12));         // false
+console.info("Object.isFrozen(myObj12): ", Object.isFrozen(myObj12));         // false
+Object.freeze(myObj12);
+console.info("Object.isExtensible(myObj12): ", Object.isExtensible(myObj12)); // false
+console.info("Object.isSealed(myObj12): ", Object.isSealed(myObj12));         // true
+console.info("Object.isFrozen(myObj12): ", Object.isFrozen(myObj12));         // true
 
 
 
