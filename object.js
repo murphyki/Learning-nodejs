@@ -239,16 +239,19 @@ console.info("descriptor.writable: ", descriptor.writable);         // true
 console.info("descriptor.value: ", descriptor.value);               // "myObj9"
 
 // Preventing Object Modification
-
-var obj1 = {
-    name: "obj1"
+// Preventing Extensions
+var myObj10 = {
+    name: "myObj10"
 };
-console.info("obj1.name: ", obj1.name);
-console.info("obj1.hasOwnProperty('name'): ", obj1.hasOwnProperty("name"));
-console.info("obj1.hasOwnProperty('toString'): ", obj1.hasOwnProperty("toString"));
-console.info("obj1.propertyIsEnumerable('name'): ", obj1.propertyIsEnumerable("name"));
-console.info("Object.isExtensible(obj1): ", Object.isExtensible(obj1));
-console.info("Object.isSealed(obj1): ", Object.isSealed(obj1));
+console.info("Object.isExtensible(myObj10): ", Object.isExtensible(myObj10)); // true
+Object.preventExtensions(myObj10);
+console.info("Object.isExtensible(myObj10): ", Object.isExtensible(myObj10)); // false
+myObj10.saySomething = function() {
+    console.info("hello");
+};
+console.info("Is saySomething in myObj10? ", ("saySomething" in myObj10));// false
+
+//console.info("Object.isSealed(obj1): ", Object.isSealed(obj1));
 
 
 
