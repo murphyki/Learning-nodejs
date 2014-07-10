@@ -156,7 +156,87 @@ Object.defineProperty(myObj6, "name", {
     writable: true    
 });
 
+// NOTE on Object.defineProperty():
+// Be sure to specify all attributes as boolean attributes automatically
+// default to false.
 
+// Accessor Property Attributes
+// Accessor properties also possess two additional attributes:
+//   [[Get]] - Contains getter function
+//   [[Set]] - Contains setter function
+// you only need define one of these attributes to define the property
+// NOTE: if you try to create a property with both data and accessor attributes
+// you will get an error
+// Two ways to define accessor properties
+// Object literal syntax: 
+var myObj7 = {
+    _name: "myObj7", // accessor property
+    
+    set name(value) { // setter method
+        console.info("Setting _name to %s", value);
+        this._name = value;
+    },
+    
+    get name() { // getter method
+        console.info("Reading _name");
+        return this._name;
+    }
+}; 
+
+// or using Object.defineProperty():
+var myObj8 = {
+    _name: "myObj8"
+}
+Object.defineProperty(myObj8, "name", {
+    set: function(value) { // setter method
+        console.info("Setting _name to %s", value);
+        this._name = value;
+    },
+    
+    get: function() { // getter method
+        console.info("Reading _name");
+        return this._name;
+    },
+    
+    enumerable: true,
+    configurable: true
+});
+
+// Note the differences in syntax above...
+
+// Can use Object.defineProperties() to define multiple properties:
+var myObj9 = {};
+Object.defineProperties(myObj9, {
+    // data property to store data
+    _name: {
+        value: "myObj9",
+        enumerable: true,   // always explicitly define as default boolean value is false
+        configurable: true, // always explicitly define as default boolean value is false
+        writable: true      // always explicitly define as default boolean value is false
+    },
+    
+    // accessor property
+    name :{
+        get: function() {
+            console.info("Reading name");
+            return this._name;
+        },
+        set: function(value) {
+            console.info("Setting name to %s", value);
+            this._name = value;
+        },
+        enumerable: true,
+        configurable: true   
+    }
+});
+
+// Retrieving property attributes:
+console.info("Retreiving property attributes for myObj9.name");
+var descriptor = Object.getOwnPropertyDescriptor(myObj9, "name");
+console.info("descriptor.enumerable: ", descriptor.enumerable);     // true
+console.info("descriptor.configurable: ", descriptor.configurable); // true
+console.info("descriptor.writable: ", descriptor.writable);         // true
+console.info("descriptor.value: ", descriptor.value);               // "myObj9"
 
 // Preventing Object Modification
 
@@ -170,10 +250,6 @@ console.info("obj1.propertyIsEnumerable('name'): ", obj1.propertyIsEnumerable("n
 console.info("Object.isExtensible(obj1): ", Object.isExtensible(obj1));
 console.info("Object.isSealed(obj1): ", Object.isSealed(obj1));
 
-var descriptor = Object.getOwnPropertyDescriptor(obj1, "name");
-console.info("descriptor.enumerable: ", descriptor.enumerable);
-console.info("descriptor.configurable: ", descriptor.configurable);
-console.info("descriptor.writable: ", descriptor.writable);
-console.info("descriptor.value: ", descriptor.value);
+
 
 
