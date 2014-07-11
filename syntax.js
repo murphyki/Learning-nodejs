@@ -154,6 +154,7 @@ if (false) {
 
 // SWITCH
 // Use a switch to select one of many conditions instead of a huge if/else if block
+// NOTE: in Javascript, the switch works with any data type...
 var number = Math.floor((Math.random() * 6) + 1); // generate a random number between 1 & 6
 switch(number) {
     case 1:
