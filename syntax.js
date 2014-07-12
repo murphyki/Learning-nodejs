@@ -156,7 +156,7 @@ if (false) {
 // Use a switch to select one of many conditions instead of a huge if/else if block
 // NOTE: in Javascript, the switch works with any data type...
 var number = Math.floor((Math.random() * 6) + 1); // generate a random number between 1 & 6
-switch(number) {
+switch (number) {
     case 1:
         console.info("Executing switch - gotta 1");
         break;
@@ -177,6 +177,22 @@ switch(number) {
         break;
     default:
         console.info("Executing switch - got some other number!");
+        break;
+}
+
+var astring = "Hello World"
+switch (astring) {
+    case "Hello" + " " + "World":
+        console.info("A switch with strings and stuff...");
+        break;
+    case "Hello":
+        console.info("Gotta 'Hello'");
+        break;
+    case "World":
+        console.info("Gotta 'World'");
+        break;
+    default:
+        console.info("Gotta " + astring);
         break;
 }
 
